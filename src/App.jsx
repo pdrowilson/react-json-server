@@ -1,54 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+
+import { useFetch } from "./hooks/useFetch"
+
+const url = 'http://localhost:3000/animes'
 
 function App() {
-  const [animes, setAnimes] = useState([])
-
+  const { data: animes, handleHttpResquest} = useFetch(url)
   const [title, setTitle] = useState("")
   const [episodes, setEpisodes] = useState("")
   const [errMessage, setErrMessage] = useState("")
 
-  const url = 'http://localhost:3000/animes'
-
-  useEffect(() => {
-    async function fetchData() {
-
-      const res = await fetch(url)
-      
-      const data = await res.json()
-      
-      setAnimes(data)
-    }
-    fetchData()
-
-  }, [])
+  const anime = { title, episodes}
   
-  // add animes
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  if (title === "" || episodes === "") {
-    setErrMessage("Input is empty!")
-    return
-  }
-
-    const anime = {
-      title,
-      episodes
+    if (title === "" || episodes === "") {
+      setErrMessage("Input is empty!")
+      return
     }
 
-    const postRes = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(anime)
-    });
+    handleHttpResquest(anime, "POST")
 
-    const addedAnime = await postRes.json()
-    console.log(addedAnime);
-
-    setAnimes((prevAnimes) => [...prevAnimes, addedAnime])
-    
     setTitle("")
     setEpisodes("")
     setErrMessage("")
@@ -56,14 +29,12 @@ function App() {
 
   const handleClose = () => setErrMessage("")
 
-  console.log(animes);
-  
   return (
     <div className='flex justify-center h-screen'>
       <div className='self-center'>
         <h1 className='text-2xl text-blue-500'>Animes</h1>
         <ul>
-          {animes.map((anime, index) => 
+          {animes && animes.map((anime, index) => 
             <li key={index}>
               <span>{anime.title}</span>: {anime.episodes} episodes
             </li>
