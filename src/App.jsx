@@ -37,6 +37,10 @@ function App() {
       },
       body: JSON.stringify(anime)
     });
+
+    const addedAnime = await res.json()
+
+    setAnimes((prevAnimes) => [...prevAnimes, addedAnime])
     
     console.log(anime);
   }
