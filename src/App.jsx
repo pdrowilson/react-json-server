@@ -5,7 +5,7 @@ function App() {
 
   const [title, setTitle] = useState("")
   const [episodes, setEpisodes] = useState("")
-  const [errFormMessage, ErrFormMessage] = useState("")
+  const [errMessage, setErrMessage] = useState("")
 
   const url = 'http://localhost:3000/animes'
 
@@ -21,13 +21,13 @@ function App() {
     fetchData()
 
   }, [])
-
+  
   // add animes
   const handleSubmit = async (e) => {
     e.preventDefault();
 
   if (title === "" || episodes === "") {
-    alert("Input is empty!")
+    setErrMessage("Input is empty!")
     return
   }
 
@@ -35,8 +35,8 @@ function App() {
       title,
       episodes
     }
-    
-    const res = await fetch(url, {
+
+    const postRes = await fetch(url, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -44,12 +44,14 @@ function App() {
       body: JSON.stringify(anime)
     });
 
-    const addedAnime = await res.json()
+    const addedAnime = await postRes.json()
+    console.log(addedAnime);
 
     setAnimes((prevAnimes) => [...prevAnimes, addedAnime])
     
     setTitle("")
     setEpisodes("")
+    setErrMessage("")
   }
 
   console.log(animes);
@@ -66,7 +68,12 @@ function App() {
           )}
         </ul>
         <hr className='my-6' />
+        {
+          errMessage &&
+            <span className='bg-red-400 rounded text-center block p-2 mb-3 animate-shake'>{errMessage}</span>
+        }
         <div className="flex">
+
           <form onSubmit={handleSubmit}>
             <label>
               Anime Title
@@ -91,6 +98,7 @@ function App() {
               type="submit" 
               value="Submit"/>
           </form>
+
         </div>
       </div>
     </div>
