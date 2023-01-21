@@ -1,14 +1,24 @@
 {
-   "animes":[
-      {
-         "title":"Naruto",
-         "year":2002,
-         "episodes":220
-      },
-      {
-         "title":"One Punch Man",
-         "year":2015,
-         "episodes":12
-      }
-   ]
+  "animes": [
+    {
+      "title": "Naruto",
+      "episodes": 220,
+      "id": 1
+    },
+    {
+      "title": "One Punch Man",
+      "episodes": 12,
+      "id": 2
+    },
+    {
+      "title": "HunterXHunter",
+      "episodes": "1000",
+      "id": 3
+    },
+    {
+      "title": "Boruto",
+      "episodes": "200",
+      "id": 4
+    }
+  ]
 }
