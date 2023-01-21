@@ -5,8 +5,20 @@ export const useFetch = (url) => {
   const [config, setConfig] = useState(null)
   const [method, setMethod] = useState(null)
   const [callFetch, setCallFetch] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [errMessage, setErrMessage] = useState(false)
+
+  const closeErrMessage = () => {
+    setErrMessage(false)
+  }
 
   const handleHttpResquest = (data, method) => {
+    if (data.title === "" || data.episodes === "") {
+      setErrMessage("Input is empty!")
+      return
+    }
+    setLoading(true)
+
     if(method === "POST") {
       setConfig({
         method: "POST",
@@ -15,7 +27,6 @@ export const useFetch = (url) => {
         },
         body: JSON.stringify(data)
       })
-
       setMethod(method)
     }
   }
@@ -28,6 +39,7 @@ export const useFetch = (url) => {
       setData(json)
     }
     fetchData()
+    setLoading(false)
   }, [url, callFetch])
 
   useEffect(() => {
@@ -36,7 +48,7 @@ export const useFetch = (url) => {
         let fetchOptions = [url, config]
         const res = await fetch(...fetchOptions)
         const json = await res.json()
-  
+        
         setCallFetch(json)
       }
     }
@@ -44,5 +56,5 @@ export const useFetch = (url) => {
   }, [config, method, url])
   
 
-  return {data, handleHttpResquest};
+  return {data, handleHttpResquest, loading, errMessage, closeErrMessage};
 }
