@@ -5,5 +5,5 @@ run "npm run server" to start json server
 
 json server runs in http://localhost:3000/
 
-json-server doc: https://github.com/typicode/json-server
+json-server repo: https://github.com/typicode/json-server
 
