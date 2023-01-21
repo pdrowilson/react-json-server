@@ -28,7 +28,9 @@ function App() {
   }
 
   const handleClose = () => closeErrMessage()
-  const handleDelete = (id) => deleteRequest(id)
+  const handleDelete = (id) => {
+    handleHttpResquest(id, "DELETE")
+  }
   return (
     <div className='flex justify-center h-screen'>
       <div className='self-center'>
