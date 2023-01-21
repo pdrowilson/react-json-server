@@ -24,8 +24,8 @@ function App() {
     <>
       <h1>Animes</h1>
       <ul>
-        {animes.map((anime) => 
-          <li key={anime.id}>
+        {animes.map((anime, index) => 
+          <li key={index}>
             <span>{anime.title}</span>: {anime.episodes} episodes | {anime.year}
           </li>
         )}
