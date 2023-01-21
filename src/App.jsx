@@ -54,6 +54,8 @@ function App() {
     setErrMessage("")
   }
 
+  const handleClose = () => setErrMessage("")
+
   console.log(animes);
   
   return (
@@ -70,7 +72,16 @@ function App() {
         <hr className='my-6' />
         {
           errMessage &&
-            <span className='bg-red-400 rounded text-center block p-2 mb-3 animate-shake'>{errMessage}</span>
+          <div className='flex justify-between bg-red-400 rounded p-2 mb-3 animate-shake'>
+            <div className=''>
+              {errMessage}
+            </div>
+            <button 
+              onClick={handleClose} 
+              className='px-2'>
+                X
+            </button>
+          </div>
         }
         <div className="flex">
 
