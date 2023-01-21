@@ -8,6 +8,7 @@ function App() {
   const { 
     data: animes, 
     handleHttpResquest, 
+    deleteRequest,
     loading, 
     errMessage,
     closeErrMessage
@@ -27,6 +28,7 @@ function App() {
   }
 
   const handleClose = () => closeErrMessage()
+  const handleDelete = (id) => deleteRequest(id)
   return (
     <div className='flex justify-center h-screen'>
       <div className='self-center'>
@@ -39,9 +41,15 @@ function App() {
         {!loading &&
           <ul>
             {animes && animes.map((anime, index) => 
-              <li key={index}>
-                <span>{anime.title}</span>: {anime.episodes} episodes
-              </li>
+              <div key={index} className="flex space-between">
+                <div className='grow'>
+                  <span>{anime.title}</span>: {anime.episodes} episodes
+                </div>
+                <button
+                onClick={() => handleDelete(anime.id)}>
+                  delete
+                </button>
+              </div>
             )}
           </ul>
         }

@@ -55,7 +55,17 @@ export const useFetch = (url) => {
     }
     httpRequest()
   }, [config, method, url])
+
+  const deleteRequest = async (id) => {
+    console.log(id);
+    const res = await fetch(`http://localhost:3000/animes/${id}`, {
+      method: 'DELETE',
+    })
+    const json = await res.json()
+    setCallFetch(json)
+    
+  }
   
 
-  return {data, handleHttpResquest, loading, errMessage, closeErrMessage};
+  return {data, handleHttpResquest, deleteRequest, loading, errMessage, closeErrMessage};
 }
