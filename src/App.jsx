@@ -5,6 +5,7 @@ function App() {
 
   const [title, setTitle] = useState("")
   const [episodes, setEpisodes] = useState("")
+  const [errFormMessage, ErrFormMessage] = useState("")
 
   const url = 'http://localhost:3000/animes'
 
@@ -24,6 +25,11 @@ function App() {
   // add animes
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+  if (title === "" || episodes === "") {
+    alert("Input is empty!")
+    return
+  }
 
     const anime = {
       title,
@@ -66,7 +72,8 @@ function App() {
               Anime Title
               <input 
                 className='p-2 mb-3 rounded w-full text-black' 
-                type="text" value={title} 
+                type="text" 
+                value={title} 
                 name="name" 
                 onChange={e => setTitle(e.target.value)}/>
             </label>
@@ -74,7 +81,8 @@ function App() {
               Episodes
               <input 
                 className='p-2 mb-3 rounded w-full text-black' 
-                type="text" value={episodes} 
+                type="text" 
+                value={episodes} 
                 name="episodes" 
                 onChange={e => setEpisodes(e.target.value)}/>
             </label>
