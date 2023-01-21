@@ -32,14 +32,15 @@ export const useFetch = (url) => {
   }
   
   useEffect(() => {
+    setLoading(true)
     async function fetchData() {
       const res = await fetch(url)
       const json = await res.json()
+      await setLoading(false)
       
       setData(json)
     }
     fetchData()
-    setLoading(false)
   }, [url, callFetch])
 
   useEffect(() => {

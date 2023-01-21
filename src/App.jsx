@@ -29,7 +29,7 @@ function App() {
   const handleClose = () => closeErrMessage()
   return (
     <div className='flex justify-center h-screen'>
-      <div className='mt-6'>
+      <div className='self-center'>
         <h1 className='text-2xl text-blue-500'>Animes</h1>
         {loading &&
           <div className='fill-white mt-5 flex justify-center'>
