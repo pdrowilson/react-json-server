@@ -1,0 +1,14 @@
+{
+   "animes":[
+      {
+         "title":"Naruto",
+         "year":2002,
+         "episodes":220
+      },
+      {
+         "title":"One Punch Man",
+         "year":2015,
+         "episodes":12
+      }
+   ]
+}
