@@ -33,10 +33,10 @@ export const useFetch = (url) => {
   
   useEffect(() => {
     setLoading(true)
-    async function fetchData() {
+    const fetchData = async () => {
       const res = await fetch(url)
       const json = await res.json()
-      await setLoading(false)
+      setLoading(false)
       
       setData(json)
     }
