@@ -42,7 +42,8 @@ function App() {
 
     setAnimes((prevAnimes) => [...prevAnimes, addedAnime])
     
-    console.log(anime);
+    setTitle("")
+    setEpisodes("")
   }
 
   console.log(animes);
